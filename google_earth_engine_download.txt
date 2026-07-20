@@ -1,0 +1,42 @@
+// Cargar colección de imágenes Landsat seleccionando imágenes por rango de fecha, coordenadas y nubosidad
+
+var collection = ee.ImageCollection("LANDSAT/LT05/C01/T1_SR")
+  .filterDate('1986-01-01', '2000-12-30')
+  .filterBounds(geometry)
+  .filterMetadata('CLOUD_COVER','less_than',5)
+
+//Inspeccionar lista de imágenes y su metadata
+print (collection)
+
+//Combinación de bandas para visualizar imagen        
+var visParams = {bands: ['B4', 'B3', 'B2'],
+                min:0,
+                max:2000};
+
+//Creamos funcion para visualizar todas las imagenes de la coleccion
+function addImage(image) { 
+  var id = image.id
+  var image = ee.Image(image.id)
+  Map.addLayer(image, visParams)
+}
+
+//Aplicamos la funcion para visualizar imágenes
+
+collection.evaluate(function(collection) {  
+collection.features.map(addImage)
+})
+
+//Seleccionando imagen y bandas para exportar a Drive
+var dataset = ee.Image('LANDSAT/LT05/C01/T1_SR/LT05_231088_19860319')
+.select(["B1","B2","B3","B4","B5"])
+
+
+//Exportamos imagen seleccionada
+
+Export.image.toDrive({
+  image: dataset,
+  description: 'SR_LT05_231088_19860319', //Este el nombre que tendrá archivo de salida
+  region:geometry,
+  crs:"EPSG:32718",
+  folder:'AplicacionesSIG_2023_Landsat' //Nombre de carpeta en Google Drive (si no existe la crea)
+});
