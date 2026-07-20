@@ -1,0 +1,37 @@
+# Clasificación de Uso de Suelo mediante Random Forest 🌲
+
+Este proyecto realiza una **clasificación supervisada de coberturas y usos de suelo** utilizando el algoritmo de Machine Learning **Random Forest** a partir de imágenes satelitales multibanda.
+
+El objetivo principal es procesar imágenes en dos momentos temporales distintos para analizar la dinámica y detección de cambios en el territorio.
+
+---
+
+## 🛠️ Flujo de Trabajo
+
+### 1. Descarga de Imágenes Satelitales (Google Earth Engine)
+Las imágenes multibanda de la serie Landsat utilizadas en este análisis fueron procesadas y descargadas desde la plataforma **Google Earth Engine (GEE)**.
+
+* Puedes revisar el código y la consulta utilizada para la descarga en [google_earth_engine_download.txt](google_earth_engine_download.txt).
+
+### 2. Digitalización de Muestras de Entrenamiento (QGIS)
+Para la etapa supervisada del modelo, se delimitó la verdad de campo directamente sobre el software **QGIS**:
+
+* Se crearon polígonos de muestra en formato GeoPackage (`.gpkg`) que identifican la respuesta espectral de cada clase.
+* Cada polígono cuenta con una columna numérica (`id`) para clasificar la categoría y una columna descriptiva (`Uso`) con el nombre de la cobertura (ej. *Bosque, Agua, Urbano, Agrícola*).
+
+### 3. Clasificación con Random Forest (Python)
+**Random Forest** es un algoritmo de aprendizaje supervisado basado en un ensamble de múltiples árboles de decisión. Se seleccionó para este trabajo debido a su alta precisión, resistencia al sobreajuste (*overfitting*) y su capacidad para manejar datos espectrales complejos.
+
+El script en Python realiza lo siguiente:
+
+1. Convierte los polígonos de QGIS a formato raster alineado con la imagen satelital.
+2. Extrae las firmas espectrales en las áreas de muestra.
+3. Entrena un clasificador `RandomForestClassifier` (100 árboles) y calcula la precisión del modelo mediante el índice *Out-of-Bag* (OOB Score).
+4. Clasifica la totalidad de la imagen satelital, genera el mapa temático en formato `.tif` y calcula las superficies en $\text{km}^2$ para cada clase de uso de suelo.
+
+---
+
+## 📂 Archivos del Repositorio
+
+* **`google_earth_engine_download.txt`**: Script utilizado para filtrar y exportar las escenas desde GEE.
+* **`randomforest.ipynb`**: Notebook con la función principal y el flujo de clasificación temporal.
