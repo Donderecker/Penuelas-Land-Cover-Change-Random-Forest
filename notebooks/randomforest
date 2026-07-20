@@ -1,0 +1,5 @@
+Random Forest is a supervised machine learning algorithm widely used for classification and regression tasks. In remote sensing, it classifies each pixel into a land cover category by learning patterns from labeled training samples.
+
+The algorithm builds multiple decision trees using random subsets of the training data and predictor variables. Each tree produces a classification, and the final class assigned to a pixel is determined by majority voting among all trees. This ensemble approach improves classification accuracy and reduces the risk of overfitting.
+
+Because of its robustness, efficiency, and ability to handle complex relationships between spectral bands, Random Forest has become one of the most commonly used algorithms for land cover mapping from satellite imagery.
