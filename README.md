@@ -153,11 +153,8 @@ Los insumos necesarios para reproducir el ejercicio son:
 - Matplotlib
 - NumPy
 
+
 ---
-
-# Agradecimientos
-
-_Este proyecto fue desarrollado originalmente como parte del curso **Aplicaciones de los Sistemas de Información Geográfica (SIG) y Ordenamiento Territorial con SIG y TICs** de la carrera de **Geografía** de la **Universidad Austral de Chile (UACh)**._
 
 ## Recursos utilizados
 
@@ -170,3 +167,9 @@ El procesamiento de las imágenes multibanda (.tif), la clasificación supervisa
 - `notebooks/RandomForest_Colab.ipynb`
 
 La actividad original fue adaptada para este repositorio con el propósito de documentar un flujo de trabajo reproducible para la clasificación supervisada de coberturas del suelo mediante el algoritmo **Random Forest**, utilizando imágenes Landsat, Python y QGIS.
+
+---
+
+# Agradecimientos
+
+_Este proyecto fue desarrollado originalmente como parte del curso **Aplicaciones de los Sistemas de Información Geográfica (SIG) y Ordenamiento Territorial con SIG y TICs** de la carrera de **Geografía** de la **Universidad Austral de Chile (UACh)**._
