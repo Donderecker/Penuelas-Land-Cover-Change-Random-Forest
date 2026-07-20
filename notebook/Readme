@@ -1,45 +1,32 @@
-<h1><b>Clasificación de Uso de Suelo mediante Random Forest 🌲</b></h1>
+CLASIFICACIÓN DE USO DE SUELO MEDIANTE RANDOM FOREST 🌲
 
-<p>Este proyecto realiza una <b>clasificación supervisada de coberturas y usos de suelo</b> utilizando el algoritmo de Machine Learning <b>Random Forest</b> a partir de imágenes satelitales multibanda.</p>
+Este proyecto realiza una clasificación supervisada de coberturas y usos de suelo utilizando el algoritmo de Machine Learning Random Forest a partir de imágenes satelitales multibanda.
 
-<p>El objetivo principal es procesar imágenes en dos momentos temporales distintos para analizar la dinámica y detección de cambios en el territorio.</p>
+El objetivo principal es procesar imágenes en dos momentos temporales distintos para analizar la dinámica y detección de cambios en el territorio.
 
-<hr>
+--------------------------------------------------
 
-<h2><b>🛠️ Flujo de Trabajo</b></h2>
+FLUJO DE TRABAJO
 
-<h3><b>1. Descarga de Imágenes Satelitales (Google Earth Engine)</b></h3>
-<p>Las imágenes multibanda de la serie Landsat utilizadas en este análisis fueron procesadas y descargadas desde la plataforma <b>Google Earth Engine (GEE)</b>.</p>
+1. Descarga de Imágenes Satelitales (Google Earth Engine)
+Las imágenes multibanda de la serie Landsat utilizadas en este análisis fueron procesadas y descargadas desde la plataforma Google Earth Engine (GEE).
 
-<ul>
-  <li>Puedes revisar el código y la consulta utilizada para la descarga en <a href="google_earth_engine_download.txt">google_earth_engine_download.txt</a>.</li>
-</ul>
+* Puedes revisar el código y la consulta utilizada para la descarga en [google_earth_engine_download.txt](google_earth_engine_download.txt).
 
-<h3><b>2. Digitalización de Muestras de Entrenamiento (QGIS)</b></h3>
-<p>Para la etapa supervisada del modelo, se delimitó la verdad de campo directamente sobre el software <b>QGIS</b>:</p>
+2. Digitalización de Muestras de Entrenamiento (QGIS)
+Para la etapa supervisada del modelo, se delimitó la verdad de campo directamente sobre el software QGIS:
 
-<ul>
-  <li>Se crearon polígonos de muestra en formato GeoPackage (<code>.gpkg</code>) que identifican la respuesta espectral de cada clase.</li>
-  <li>Cada polígono cuenta con una columna numérica (<code>id</code>) para clasificar la categoría y una columna descriptiva (<code>Uso</code>) con el nombre de la cobertura (ej. <i>Bosque, Agua, Urbano, Agrícola</i>).</li>
-</ul>
+* Se crearon polígonos de muestra en formato GeoPackage (.gpkg) que identifican la respuesta espectral de cada clase.
+* Cada polígono cuenta con una columna numérica (id) para clasificar la categoría y una columna descriptiva (Uso) con el nombre de la cobertura (ej. Bosque, Agua, Urbano, Agrícola).
 
-<h3><b>3. Clasificación con Random Forest (Python)</b></h3>
-<p><b>Random Forest</b> es un algoritmo de aprendizaje supervisado basado en un ensamble de múltiples árboles de decisión. Se seleccionó para este trabajo debido a su alta precisión, resistencia al sobreajuste (<i>overfitting</i>) y su capacidad para manejar datos espectrales complejos.</p>
+3. Clasificación con Random Forest (Python)
+Random Forest es un algoritmo de aprendizaje supervisado basado en un ensamble de múltiples árboles de decisión. Se seleccionó para este trabajo debido a su alta precisión, resistencia al sobreajuste (overfitting) y su capacidad para manejar datos espectrales complejos.
 
-<p>El script en Python realiza lo siguiente:</p>
+El script en Python realiza lo siguiente:
 
-<ol>
-  <li>Convierte los polígonos de QGIS a formato raster alineado con la imagen satelital.</li>
-  <li>Extrae las firmas espectrales en las áreas de muestra.</li>
-  <li>Entrena un clasificador <code>RandomForestClassifier</code> (100 árboles) y calcula la precisión del modelo mediante el índice <i>Out-of-Bag</i> (OOB Score).</li>
-  <li>Clasifica la totalidad de la imagen satelital, genera el mapa temático en formato <code>.tif</code> y calcula las superficies en km² para cada clase de uso de suelo.</li>
-</ol>
+1. Convierte los polígonos de QGIS a formato raster alineado con la imagen satelital.
+2. Extrae las firmas espectrales en las áreas de muestra.
+3. Entrena un clasificador RandomForestClassifier (100 árboles) y calcula la precisión del modelo mediante el índice Out-of-Bag (OOB Score).
+4. Clasifica la totalidad de la imagen satelital, genera el mapa temático en formato .tif y calcula las superficies en km² para cada clase de uso de suelo.
 
-<hr>
-
-<h2><b>📂 Archivos del Repositorio</b></h2>
-
-<ul>
-  <li><b><code>google_earth_engine_download.txt</code></b>: Script utilizado para filtrar y exportar las escenas desde GEE.</li>
-  <li><b><code>randomforest.ipynb</code></b>: Notebook con la función principal y el flujo de clasificación temporal.</li>
-</ul>
+--------------------------------------------------
