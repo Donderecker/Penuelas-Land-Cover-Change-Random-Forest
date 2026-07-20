@@ -129,33 +129,6 @@ El siguiente gráfico resume las principales transiciones de cobertura entre amb
 
 ---
 
-# Estructura del repositorio
-
-```
-penuelas-land-cover-change/
-│
-├── README.md
-│
-├── notebooks/
-│   └── random_forest_land_cover.ipynb
-│
-├── scripts/
-│   └── google_earth_engine_download.js
-│
-├── images/
-│   ├── penuelas-workflow.png
-│   ├── penuelas-land-cover-map-2013-2020.png
-│   ├── penuelas-landsat-false-color-2013-2020.png
-│   ├── penuelas-random-forest-2013.png
-│   ├── penuelas-random-forest-2020.png
-│   └── penuelas-land-cover-change-chart.png
-│
-└── data/
-    └── README.md
-```
-
----
-
 # Disponibilidad de los datos
 
 Los datos originales **no se incluyen** en este repositorio debido al tamaño de los archivos.
@@ -166,15 +139,6 @@ Los insumos necesarios para reproducir el ejercicio son:
 - Polígonos de entrenamiento (.gpkg).
 - Raster clasificados generados por Random Forest.
 
----
-
-# Recursos adicionales
-
-El script utilizado para descargar las imágenes Landsat desde **Google Earth Engine** se encuentra disponible en:
-
-```
-scripts/google_earth_engine_download.js
-```
 
 ---
 
@@ -197,7 +161,7 @@ Este proyecto fue desarrollado originalmente como parte del curso **Aplicaciones
 
 ## Recursos utilizados
 
-Las imágenes satelitales corresponden a escenas **Landsat**, obtenidas mediante **Google Earth Engine**. El código utilizado para su descarga se encuentra disponible en:
+Las imágenes satelitales corresponden a escenas **Landsat 8**, obtenidas mediante **Google Earth Engine**. El código utilizado para su descarga se encuentra disponible en:
 
 - `scripts/google_earth_engine_download.txt`
 
